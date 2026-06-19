@@ -412,7 +412,56 @@ Un bus de sistema se divide en tres grupos funcionales de líneas:
 
 * PCI Express
 ** PCI Express (11, 123)
-- PCI ..
+** PCI Express
+- El PCI Express (PCIe) nacio como un reemplazo del bus PCI
+- El bus PCI era un bus periférico o mezzanine muy popular
+- El PCIe fue creado con una arquitectura punto a punto, teniendo 3
+  capas: fisica, de transaccion y de enlace de datos
+#+ATTR_LATEX: :scale 0.5
+#+CAPTION: PCI vs PCIe
+[[./images/PCIPCIe.jpeg]]
+
+** Arquitectura  PCI Express
+ Uno de los usos mas claros del PCIe es el *root complex*
+ - *Switch:* Maneja multiples comunicaciones flujo entre PCIe simultaneamente
+ - *PCIe endpoint:* El dispositivo final al que llegan los datos, como
+   una tarjeta gráfica o una tarjeta de red
+ - *Legacy endpoint:* Estructuras o dispositivos antiguos o heredados
+   de PCI
+ - *PCI/PCIe Bridge.* Permite a los antiguos dispositivos PCI
+   conectarse
+
+** Arquitectura  PCI Express: Chipset
+#+Attr_LATEX: :scale 0.5
+#+CAPTION: Ejemplo de PCIe
+[[./images/PCIearq.jpg]]
+** Capa Física PCIe
+En esta capa tenemos como los bits se mueven fisicamente a traves de
+los *lanes*
+ - Pueden ser 1, 4, 8 o hasta 16 lanes
+ - Usa codificación de 128 bits o 130 bits
+ - Usa una técnica llamada *scrambling*
+ 
+#+Attr_LATEX: :scale 0.4
+#+CAPTION: Distributcion Multilane en un PCIe
+[[./images/PCIeMultiLane.jpg]]
+** Capa de Transaccion PCIe
+Esta capa se encarga de leer y mandar peticiones, creando paquetes que
+seran mandados por la capa de enlace de datos, estas transacciones
+pueden ser mandadas a 4 tipo de direcciones de espacios, con sus
+respectivos tipos de paquetes
+#+Attr_LATEX: :scale 0.4
+#+CAPTION: Distributcion Multilane en un PCIe
+[[./images/PCIeTLPs.jpg]]
+** Capa de Enlace de datos
+Asegura los envios de paquetes, usando los
+protocolos, creando un DLLP (Data Link Layer Package) y un CRC,
+además de:
+- *ECRC:* End-to-end Cyclic Redundancy Check (Opcional)
+- *LCRC:* 32-bit link-layer CRC
+#+Attr_LATEX: :scale 0.3
+#+CAPTION: Procesamiento de paquetes en PCIe
+[[./images/PCIePDUFormat.jpg]]
 * Referencias
 ** Bibliografía
 :PROPERTIES:
