@@ -56,7 +56,10 @@
 * Buses del Sistema
 ** Estructuras de Interconexión (7, 97)
 * Interconexión con Buses
-** Interconexión con Buses (7, 99) j
+** Interconexión con Buses (7, 99)
+:PROPERTIES:
+    :BEAMER_opt: allowframebreaks
+    :END:
 - Un computador consta de tres componentes fundamentales: *CPU*,
   *Memoria* y *Módulos de E/S*.
 - Estos componentes deben comunicarse entre sí para ejecutar
@@ -73,6 +76,8 @@
   - *E/S a/desde Memoria*: Utilizado en transferencias directas sin
     pasar constantemente por la CPU (e.g., DMA - Acceso Directo a
     Memoria).
+    [[./images/ComponentesBus.png]]
+    
 ** Conceptos y Estructura Física
 *** ¿Qué es un Bus?
 - Un *bus* es un camino de comunicación compartido que conecta dos o
@@ -85,7 +90,10 @@
   un instante dado.
 - Los buses del sistema modernos constan de decenas de líneas de
   comunicación individuales.
-** Estructura del Bus  (7, 99) j
+** Estructura del Bus  (7, 99)
+:PROPERTIES:
+    :BEAMER_opt: allowframebreaks
+    :END:
 Un bus de sistema se divide en tres grupos funcionales de líneas:
 
 - *Bus de Datos*: 
@@ -107,13 +115,11 @@ Un bus de sistema se divide en tres grupos funcionales de líneas:
   - Transmite órdenes y señales de temporización entre los módulos.
   - *Señales típicas*: Escritura/Lectura de Memoria, Escritura/Lectura
     de E/S, Petición de Bus, Concesión de Bus, Reloj, Reinicio.
+    [[./images/TipoLineas.png]]
+    
 ** Jerarquía de Buses Múltiples (7, 102) A
 ** Elementos de Diseño de un Bus (7, 104) 
 * Interconexión punto a punto
-<<<<<<< HEAD
-** Interconexión punto a punto (11, 118)
-** QPI (11, 120) 
-=======
 ** Problemas del bus compartido tradicional
 [[./images/BusCuelloDeBotella.jpeg]]
 -Restricciones eléctricas: Al subir la frecuencia del reloj para ganar velocidad, el bus tradicional falla\\
@@ -201,7 +207,6 @@ Un bus de sistema se divide en tres grupos funcionales de líneas:
 - **Protocolo:** Maneja la coherencia de caché, asegurando que todos los núcleos vean el dato más actualizado de la memoria.
 - **Unidad de mensaje:** El "Paquete", que consiste en un número entero de Flits.
 
->>>>>>> 245737d0f76ca86c113e209142e4669c4dfe4f74
 * PCI Express
 ** PCI Express (11, 123) D
 * Referencias

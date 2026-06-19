@@ -1,4 +1,4 @@
-% Created 2026-06-18 Thu 23:30
+% Created 2026-06-19 Fri 00:45
 % Intended LaTeX compiler: pdflatex
 \documentclass[presentation]{beamer}
 \usepackage[utf8]{inputenc}
@@ -16,7 +16,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
 \usepackage[backend=biber, style=apa]{biblatex}
-\addbibresource{/home/emilioalbanfs/BusesDelSistema_G1-G2/bibliography/bibliography.bib}
+\addbibresource{/home/josetm-epn/PRESENTACION/BusesDelSistema_G1-G2/bibliography/bibliography.bib}
 \usetheme{Madrid}
 \usecolortheme{}
 \usefonttheme{}
@@ -42,7 +42,7 @@
 
 
 \section{Indicaciones}
-\label{sec:org30f29a1}
+\label{sec:orga79367d}
 \begin{frame}[fragile,allowframebreaks]{Indicaciones}
  \begin{itemize}
 \item Recuerde que si \texttt{options: H:2}, entonces:
@@ -66,7 +66,7 @@
 \item El grupo sube las ayudas memoria/notas del tema usando la plantilla \url{FormatoTareas/TemplateNotasClase.org} (\texttt{.ORG} y \texttt{.PDF})
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org43704fc},fragile]{Diseño de las Diapositivas}
+\begin{frame}[label={sec:orgfda2a19},fragile]{Diseño de las Diapositivas}
  \begin{itemize}
 \item Para diseñar sus diapositivas puede consultar cualquiera de las
 presentaciones \texttt{.ORG} desarrolladas por el profesor así como al
@@ -75,7 +75,7 @@ archivo \href{https://github.com/LeninGF/EPN-Lectures/blob/main/iccd332ArqComp-2
 puede copiar y sustituir por su texto propio.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org9811fde}]{Sobre este Documento}
+\begin{frame}[label={sec:orgfcfe9dc}]{Sobre este Documento}
 \begin{itemize}
 \item Este documento tiene la propuesta de temas a tratar y desarrollar
 por los estudiantes.
@@ -84,36 +84,109 @@ consultar bibliografía adicional.
 \end{itemize}
 \end{frame}
 \section{Buses del Sistema}
-\label{sec:orgc04bbbb}
-\begin{frame}[label={sec:orga650b4b}]{Estructuras de Interconexión (7, 97)}
+\label{sec:org3191b5a}
+\begin{frame}[label={sec:org3fa455e}]{Estructuras de Interconexión (7, 97)}
 \end{frame}
 \section{Interconexión con Buses}
-\label{sec:org64efd30}
-\begin{frame}[label={sec:orgee61c42}]{Interconexión con Buses (7, 99)}
+\label{sec:org53d4b2f}
+\begin{frame}[allowframebreaks]{Interconexión con Buses (7, 99)}
+\begin{itemize}
+\item Un computador consta de tres componentes fundamentales: \alert{CPU},
+\alert{Memoria} y \alert{Módulos de E/S}.
+\item Estos componentes deben comunicarse entre sí para ejecutar
+programas.
+\item La estructura de interconexión es el conjunto de caminos que
+conectan estos módulos.
+\item El diseño depende de los intercambios que deban realizarse:
+\begin{itemize}
+\item \alert{Memoria a CPU}: La CPU lee una instrucción o dato desde la
+memoria.
+\item \alert{CPU a Memoria}: La CPU escribe un dato en la memoria.
+\item \alert{E/S a CPU}: La CPU lee datos de un dispositivo de E/S mediante el
+módulo correspondiente.
+\item \alert{CPU a E/S}: La CPU envía datos o comandos al dispositivo de E/S.
+\item \alert{E/S a/desde Memoria}: Utilizado en transferencias directas sin
+pasar constantemente por la CPU (e.g., DMA - Acceso Directo a
+Memoria).
+\begin{center}
+\includegraphics[width=.9\linewidth]{./images/ComponentesBus.png}
+\end{center}
+\end{itemize}
+\end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org269e789}]{Estructura del Bus  (7, 99)}
+
+\begin{frame}[label={sec:org17b5458}]{Conceptos y Estructura Física}
+\begin{block}{¿Qué es un Bus?}
+\begin{itemize}
+\item Un \alert{bus} es un camino de comunicación compartido que conecta dos o
+más dispositivos.
+\item \alert{Medio de difusión (broadcast)}: Las señales transmitidas por un
+dispositivo son recibidas por todos los demás.
+\item Si dos dispositivos transmiten al mismo tiempo, sus señales
+colisionarán y se corromperán.
+\item Por ende, solo \alert{un dispositivo} puede transmitir datos con éxito en
+un instante dado.
+\item Los buses del sistema modernos constan de decenas de líneas de
+comunicación individuales.
+\end{itemize}
+\end{block}
 \end{frame}
-\begin{frame}[label={sec:orgd6cc553}]{Jerarquía de Buses Múltiples (7, 102)}
+\begin{frame}[allowframebreaks]{Estructura del Bus  (7, 99)}
+Un bus de sistema se divide en tres grupos funcionales de líneas:
+
+\begin{itemize}
+\item \alert{Bus de Datos}: 
+\begin{itemize}
+\item Proporciona un camino para transmitir datos entre los módulos.
+\item El número de líneas determina el \alert{ancho del bus de datos} (e.g.,
+32, 64 o 128 bits).
+\item El ancho del bus influye directamente en el rendimiento del
+sistema.
+\end{itemize}
+
+\item \alert{Bus de Direcciones}:
+\begin{itemize}
+\item Determina el origen o el destino del dato en el bus de datos.
+\item Si la CPU desea leer una palabra de memoria, coloca la dirección
+física de la palabra en estas líneas.
+\item El \alert{ancho del bus de direcciones} determina la capacidad máxima de
+memoria direccionable del sistema (\(2^{n}\) ubicaciones).
+\end{itemize}
+
+\item \alert{Bus de Control}:
+\begin{itemize}
+\item Controla el acceso y uso de las líneas de datos y direcciones.
+\item Transmite órdenes y señales de temporización entre los módulos.
+\item \alert{Señales típicas}: Escritura/Lectura de Memoria, Escritura/Lectura
+de E/S, Petición de Bus, Concesión de Bus, Reloj, Reinicio.
+\begin{center}
+\includegraphics[width=.9\linewidth]{./images/TipoLineas.png}
+\end{center}
+\end{itemize}
+\end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org7dcde73}]{Elementos de Diseño de un Bus (7, 104)}
+
+\begin{frame}[label={sec:org1562eef}]{Jerarquía de Buses Múltiples (7, 102) A}
+\end{frame}
+\begin{frame}[label={sec:org1146e4d}]{Elementos de Diseño de un Bus (7, 104)}
 \end{frame}
 \section{Interconexión punto a punto}
-\label{sec:org50dcd34}
-\begin{frame}[label={sec:org9fd9279}]{Problemas del bus compartido tradicional}
+\label{sec:org017e3cb}
+\begin{frame}[label={sec:orgff3c1fb}]{Problemas del bus compartido tradicional}
 \begin{center}
 \includegraphics[width=.9\linewidth]{./images/BusCuelloDeBotella.jpeg}
 \end{center}
 -Restricciones eléctricas: Al subir la frecuencia del reloj para ganar velocidad, el bus tradicional falla\\[0pt]
 -El problema: Con tasas de datos tan altas, es casi imposible realizar la sincronización y el arbitraje a tiempo y sin errores\\[0pt]
 \end{frame}
-\begin{frame}[label={sec:org0880dad}]{El Reemplazo: Interconexión Punto a Punto}
+\begin{frame}[label={sec:org7aa435d}]{El Reemplazo: Interconexión Punto a Punto}
 \begin{center}
 \includegraphics[width=.9\linewidth]{./images/InterconexionPuntoaPunto.jpeg}
 \end{center}
 -El nuevo estándar: El bus compartido ha sido reemplazado casi por completo por interconexiones punto a punto\\[0pt]
 -Ventajas: Menos latencia, una tasa de datos significativamente más alta y mejor escalabilidad\\[0pt]
 \end{frame}
-\begin{frame}[label={sec:org0e064cb}]{El Reemplazo: Las 3 características modernas}
+\begin{frame}[label={sec:org4e5a01b}]{El Reemplazo: Las 3 características modernas}
 \begin{center}
 \includegraphics[width=.9\linewidth]{./images/CapasIPP.jpeg}
 \end{center}
@@ -123,7 +196,7 @@ consultar bibliografía adicional.
 \item Transferencia por paquetes: Los datos se envían como secuencias de paquetes que incluyen cabeceras y detección de errores
 \end{enumerate}
 \end{frame}
-\begin{frame}[label={sec:orgca19f15}]{QPI (11, 120): Ejemplo de Interconexión Punto a Punto: Intel QPI?}
+\begin{frame}[label={sec:org486284a}]{QPI (11, 120): Ejemplo de Interconexión Punto a Punto: Intel QPI?}
 \begin{itemize}
 \item \alert{\alert{Interconexión punto a punto}} de alta velocidad introducida en 2008 \autocite[p.118]{stallings2022computer}.
 \item \alert{\alert{Motivación:}} Superar restricciones eléctricas y latencia de los
@@ -137,7 +210,7 @@ buses compartidos en chips multinúcleo.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orgc56b037}]{Configuración Multinúcleo y Red de Conmutación}
+\begin{frame}[label={sec:org7efcbe2}]{Configuración Multinúcleo y Red de Conmutación}
 \begin{columns}
 \begin{column}{0.5\columnwidth}
 \begin{center}
@@ -155,7 +228,7 @@ buses compartidos en chips multinúcleo.
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:orgeef8a8b}]{Arquitectura de 4 Capas de QPI}
+\begin{frame}[label={sec:orgb630211}]{Arquitectura de 4 Capas de QPI}
 \begin{center}
 \includegraphics[width=0.5\textwidth]{./images/QPILayers.png}
 \end{center}
@@ -168,7 +241,7 @@ buses compartidos en chips multinúcleo.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orgd707dab}]{Capa Física: Phits y Señalización Diferencial}
+\begin{frame}[label={sec:org22b7859}]{Capa Física: Phits y Señalización Diferencial}
 \begin{center}
 \includegraphics[width=0.45\textwidth]{./images/PhysicalInterfaceQPIInterconnect.png}
 \end{center}
@@ -181,7 +254,7 @@ hasta 32 GB/s.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:org105d32f}]{Capa Física: Distribución Multicarril}
+\begin{frame}[label={sec:org57f89db}]{Capa Física: Distribución Multicarril}
 \begin{columns}
 \begin{column}{0.5\columnwidth}
 \begin{center}
@@ -199,7 +272,7 @@ hasta 32 GB/s.
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:org50405eb}]{Capa de Enlace: Flits y Control de Flujo}
+\begin{frame}[label={sec:orgdc80b53}]{Capa de Enlace: Flits y Control de Flujo}
 \begin{itemize}
 \item \alert{\alert{Flit (Flow Control Unit):}} PDU de 80 bits (72 de mensaje + 8 de CRC).
 \item \alert{\alert{Control de errores:}} Si el CRC falla, el receptor solicita retransmisión inmediata.
@@ -207,7 +280,7 @@ hasta 32 GB/s.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[label={sec:orgeac0a7c}]{Capas de Encaminamiento y Protocolo}
+\begin{frame}[label={sec:org5f4abfa}]{Capas de Encaminamiento y Protocolo}
 \begin{itemize}
 \item \alert{\alert{Encaminamiento:}} Decide el camino del paquete a través de los nodos del sistema usando tablas de rutas.
 \item \alert{\alert{Protocolo:}} Maneja la coherencia de caché, asegurando que todos los núcleos vean el dato más actualizado de la memoria.
@@ -216,11 +289,11 @@ hasta 32 GB/s.
 \end{frame}
 
 \section{PCI Express}
-\label{sec:org6b6717f}
-\begin{frame}[label={sec:org1015eb1}]{PCI Express (11, 123)}
+\label{sec:org91fb7c0}
+\begin{frame}[label={sec:orgad7faa6}]{PCI Express (11, 123) D}
 \end{frame}
 \section{Referencias}
-\label{sec:org4bc88ce}
+\label{sec:orgf8e4e50}
 \begin{frame}[allowframebreaks]{Bibliografía}
 \printbibliography
 \end{frame}
