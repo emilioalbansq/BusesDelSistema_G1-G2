@@ -411,7 +411,6 @@ Un bus de sistema se divide en tres grupos funcionales de líneas:
  - **Unidad de mensaje:** El "Paquete", que consiste en un número entero de Flits.
 
 * PCI Express
-** PCI Express (11, 123)
 ** PCI Express
 - El PCI Express (PCIe) nacio como un reemplazo del bus PCI
 - El bus PCI era un bus periférico o mezzanine muy popular
