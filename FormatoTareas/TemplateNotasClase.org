@@ -5,8 +5,8 @@
 #+options: tasks:t tex:t timestamp:t title:t toc:t todo:t |:t
 #+title: Toma de Notas - S8 Buses del Sistema
 #+date: 2026-06-19
-#+author: G1-G2
-#+email: coloque.su.nombre@epn.edu.ec
+#+author: G1 [Emilio Alban, Ariel Montufar, Karen Suarez, Samuel Churaco]
+#+email: emilio.alban@epn.edu.ec
 #+language: Español
 #+select_tags: export
 #+exclude_tags: noexport
@@ -173,9 +173,9 @@ gestionando la información estructurada en paquetes a través de
 protocolos de capas (Física, Enlace, Enrutamiento y Protocolo)
 
 
-* TODO Mis Tareas [50%]
+* TODO Mis Tareas [100%]
 - [X] Leer este documento
-- [ ] Escribir el resumen  de la exposición 1
+- [X] Escribir el resumen  de la exposición 1 - G1
 
 #+print_bibliography: 
  
