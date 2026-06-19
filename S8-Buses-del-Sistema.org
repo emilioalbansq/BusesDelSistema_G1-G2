@@ -247,8 +247,7 @@ Un bus de sistema se divide en tres grupos funcionales de líneas:
 :END:
 - Los enlaces QPI (flechas verdes) forman una *malla de conmutación* (switching fabric).
 - Permite que los datos "salten" entre núcleos para llegar a su destino.
-- Conecta el procesador con el I/O Hub (IOH), que traduce señales hacia dispositivos PCIe.
-** Configuración Multinúcleo y Red de Conmutación
+- Conecta el procesador con el I/O Hub (IOH), que traduce señales hacia dispositivos PCIe.** Configuración Multinúcleo y Red de Conmutación
 #+ATTR_LATEX: :width 0.45\textwidth
 
 ** Arquitectura de 4 Capas de QPI
@@ -285,8 +284,7 @@ Un bus de sistema se divide en tres grupos funcionales de líneas:
 :END:
 - El puerto QPI usa 20 carriles (*lanes*) de datos en cada dirección.
 - Los bits de un Flit se reparten entre los carriles usando técnica *round‑robin*.
-- Permite la transmisión de un Phit completo (20 bits) en paralelo por ciclo.
-
+- Permite la transmisión de un Phit completo (20 bits) en paralelo por ciclo.
   
 ** Capa de Enlace: Flits y Control de Flujo
 - **Flit (Flow Control Unit):** PDU de 80 bits (72 de mensaje + 8 de CRC).
@@ -299,7 +297,7 @@ Un bus de sistema se divide en tres grupos funcionales de líneas:
 - **Unidad de mensaje:** El "Paquete", que consiste en un número entero de Flits.
 
 * PCI Express
-** PCI Express
+** PCI Express (11, 123) ** PCI Express
 - El PCI Express (PCIe) nacio como un reemplazo del bus PCI
 - El bus PCI era un bus periférico o mezzanine muy popular
 - El PCIe fue creado con una arquitectura punto a punto, teniendo 3
