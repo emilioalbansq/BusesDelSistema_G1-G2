@@ -117,7 +117,52 @@ Un bus de sistema se divide en tres grupos funcionales de líneas:
     de E/S, Petición de Bus, Concesión de Bus, Reloj, Reinicio.
     [[./images/TipoLineas.png]]
     
-** Jerarquía de Buses Múltiples (7, 102) 
+** ¿Por qué surge la Jerarquía de Buses? (7, 102)
+:PROPERTIES:
+:BEAMER_opt: allowframebreaks
+:END:
+- Un único bus compartido simplifica la interconexión del sistema.
+- A medida que aumenta el número de dispositivos, aparecen limitaciones críticas:
+  - *Retardo de propagación:* Las líneas físicas largas ralentizan las señales.
+  - *Contención:* Más dispositivos compiten por el acceso al canal.
+  - *Tráfico masivo:* El flujo de datos entre CPU, memoria y E/S satura el canal.
+- *Resultado:* El bus se convierte en un **cuello de botella** y un único bus ya no puede satisfacer a todos los componentes.
+
+** Jerarquía Tradicional de Buses (7, 102)
+*** Arquitectura Clásica                                     
+:PROPERTIES:
+:BEAMER_col: 0.55
+:END:
+#+ATTR_LATEX: :width \textwidth
+[[./images/JerarquiaTradicionalBus.png]]
+
+*** Características                                           
+:PROPERTIES:
+:BEAMER_col: 0.45
+:END:
+- *Bus Local:* Conecta la CPU con la memoria caché a la máxima velocidad del procesador.
+- *Bus del Sistema:* Se encarga de conectar la caché con la memoria principal.
+- *Bus de Expansión:* Conecta los dispositivos de E/S periféricos.
+- *Aislamiento:* Mantiene el tráfico de E/S separado de los procesos de la CPU.
+
+** Jerarquía de Buses de Altas Prestaciones (7, 103)
+
+*** Arquitectura Moderna                                     
+:PROPERTIES:
+:BEAMER_col: 0.55
+:END:
+#+ATTR_LATEX: :width \textwidth
+[[./images/JerarquiaAltasPrestaciones.png]]
+
+*** Características                                           
+:PROPERTIES:
+:BEAMER_col: 0.45
+:END:
+- *Bus de Alta Velocidad:* Conecta de forma más directa los dispositivos exigentes (video, gráficos, redes rápidas).
+- *Bus de Expansión:* Mantiene relegados a los dispositivos y periféricos más lentos.
+- *Ventaja:* La separación del tráfico mejora el rendimiento global del sistema.
+- *Transición:* Esta organización introduce nuevos retos en el arbitraje, la temporización y el ancho del bus.
+  
 ** Elementos de Diseño de un Bus (7, 104)
 - El diseño de un bus de sistema no es arbitrario; representa un balance
   crítico entre *costo físico*, *complejidad del hardware* y
