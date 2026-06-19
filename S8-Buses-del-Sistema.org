@@ -24,37 +24,107 @@
 #+LATEX_HEADER: \usepackage[spanish]{babel}
 #+LATEX_HEADER: \usepackage[backend=biber,citestyle=apa, style=apa]{biblatex}
 
-* Indicaciones
-** Indicaciones
+* Buses del Sistema
+** Estructuras de Interconexión (7, 97)
 :PROPERTIES:
 :BEAMER_opt: allowframebreaks
 :END:
-- Recuerde que si ~options: H:2~, entonces:
-  - ~*~ Declara el nombre de la Sección
-  - ~**~ Declara el nombre de la diapositiva
-- Puede alterar la estructura de la diapositiva si lo considera necesario
-- Reparto del tema por grupos:
-  - *G1:* Estructuras de Interconexión, Interconexión punto a punto, QPI
-  - *G2:* Interconexión con Buses, Jerarquía de Buses, Elementos de Diseño, PCI Express
-- Para este tema consulte las siguientes fuentes:
-  - \textcite{stallings2006esp}, 7ma edición, 2006, Español, páginas 99 a 119.
-  - \textcite{stallings2022computer}, 11ava edición, 2022, English, páginas 116 a 131.
-- Las tuplas (7, 99) significan: Edición 7, página 99 del PDF.
-- El grupo expone el tema y sube la presentación (~.ORG~ y ~.PDF~ para Beamer, o ~.ORG~ y ~.HTML~ para reveal.js)
-- El grupo sube las ayudas memoria/notas del tema usando la plantilla [[file:FormatoTareas/TemplateNotasClase.org]] (~.ORG~ y ~.PDF~)
-** Diseño de las Diapositivas
-- Para diseñar sus diapositivas puede consultar cualquiera de las
-  presentaciones ~.ORG~ desarrolladas por el profesor así como al
-  archivo [[https://github.com/LeninGF/EPN-Lectures/blob/main/iccd332ArqComp-2024-B/Tutoriales/Beamer-Emacs/tutorialBeamer.org][tutorialBeamer.org]] en el repositorio de la clase.
-- Recuerde que los archivos ~.ORG~ son archivos de texto así que los
-  puede copiar y sustituir por su texto propio.
-** Sobre este Documento
-- Este documento tiene la propuesta de temas a tratar y desarrollar
-  por los estudiantes.
-- Se ha de utilizar como base la bibliografía recomendada, pero puede
-  consultar bibliografía adicional.
-* Buses del Sistema
-** Estructuras de Interconexión (7, 97)
+
+¿Cómo se comunican los módulos?
+#+begin_center
+*CPU* $\leftrightarrow$ *Memoria* $\leftrightarrow$ *E/S*
+#+end_center
+
+- *Red de comunicación interna:* El conjunto de caminos que conectan los diversos módulos.
+- *Intercambio de datos:* Flujo de bits de información entre componentes.
+- *Intercambio de direcciones:* Especificación del origen o destino del flujo.
+- *Intercambio de señales de control:* Sincronización y órdenes del sistema.
+
+#+begin_note
+- El computador está formado por módulos independientes.
+- Necesitan un mecanismo para intercambiar información.
+- La estructura de interconexión conecta CPU, memoria y dispositivos de E/S.
+#+end_note
+
+** Módulos Principales
+*** Componentes del Sistema
+    :PROPERTIES:
+    :BEAMER_col: 0.6
+    :END:
+| Módulo    | Función                        |
+|-----------+--------------------------------|
+| *CPU*     | Ejecuta instrucciones          |
+| *Memoria* | Almacena datos e instrucciones |
+| *E/S*     | Comunicación con el exterior   |
+
+*** Relación de Dependencia
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :END:
+#+begin_center
+Ningún módulo trabaja de forma aislada; el rendimiento depende críticamente de la infraestructura que los une.
+#+end_center
+
+#+begin_note
+- Cada módulo cumple una tarea específica.
+- Ninguno trabaja aislado.
+- Todos dependen de la interconexión.
+#+end_note
+
+** Tipos de Transferencias (1/2)
+:PROPERTIES:
+:BEAMER_opt: allowframebreaks
+:END:
+
+*** Memoria $\rightarrow$ Procesador
+#+begin_center
+*Memoria* $\longrightarrow$ *CPU*
+#+end_center
+- Lectura de instrucciones y datos desde la RAM.
+- _Ejemplo:_ La CPU lee la siguiente instrucción de código a ejecutar.
+
+*** Procesador $\rightarrow$ Memoria
+#+begin_center
+*CPU* $\longrightarrow$ *Memoria*
+ #+end_center
+- Escritura de resultados y actualización de datos.
+- _Ejemplo:_ Guardar en la RAM el resultado de una operación matemática.
+
+
+** Tipos de Transferencias (2/2)
+:PROPERTIES:
+:BEAMER_opt: allowframebreaks
+:END:
+
+*** E/S $\rightarrow$ Procesador
+#+begin_center
+*Teclado* $\longrightarrow$ *CPU*
+#+end_center
+- Entrada de información y recepción de eventos externos.
+- _Ejemplo:_ Capturar la pulsación de una tecla por el usuario.
+
+*** Procesador $\rightarrow$ E/S
+#+begin_center
+*CPU* $\longrightarrow$ *Monitor*
+#+end_center
+- Salida de información y envío de comandos a periféricos.
+- _Ejemplo:_ Enviar los datos de video para mostrar una imagen en pantalla.
+
+** Transferencia Directa: Memoria $\leftrightarrow$ E/S (DMA)
+*** Acceso Directo a Memoria
+#+begin_center
+*Disco (SSD/HDD)* $\longleftrightarrow$ *Memoria*
+#+end_center
+- *Transferencia directa:* Intercambio de datos sin intervención constante de la CPU.
+- *Ventajas:* - Libera de carga de procesamiento al procesador.
+  - Incrementa sustancialmente el rendimiento global del sistema.
+- _Ejemplo:_ Copiar un archivo de gran tamaño desde el almacenamiento secundario hacia la memoria principal (RAM).
+
+** Resumen de Interconexiones
+- **Módulos clave:** CPU, Memoria y E/S constituyen el núcleo del hardware.
+- **Cinco transferencias fundamentales:** Definen todos los flujos lógicos posibles dentro de la arquitectura.
+- **Objetivo final:** La estructura de interconexión permite el funcionamiento dinámico, armonioso y coordinado del computador.
+  
 * Interconexión con Buses
 ** Interconexión con Buses (7, 99)
 :PROPERTIES:
@@ -117,7 +187,52 @@ Un bus de sistema se divide en tres grupos funcionales de líneas:
     de E/S, Petición de Bus, Concesión de Bus, Reloj, Reinicio.
     [[./images/TipoLineas.png]]
     
-** Jerarquía de Buses Múltiples (7, 102) 
+** ¿Por qué surge la Jerarquía de Buses? (7, 102)
+:PROPERTIES:
+:BEAMER_opt: allowframebreaks
+:END:
+- Un único bus compartido simplifica la interconexión del sistema.
+- A medida que aumenta el número de dispositivos, aparecen limitaciones críticas:
+  - *Retardo de propagación:* Las líneas físicas largas ralentizan las señales.
+  - *Contención:* Más dispositivos compiten por el acceso al canal.
+  - *Tráfico masivo:* El flujo de datos entre CPU, memoria y E/S satura el canal.
+- *Resultado:* El bus se convierte en un **cuello de botella** y un único bus ya no puede satisfacer a todos los componentes.
+
+** Jerarquía Tradicional de Buses (7, 102)
+*** Arquitectura Clásica                                     
+:PROPERTIES:
+:BEAMER_col: 0.55
+:END:
+#+ATTR_LATEX: :width \textwidth
+[[./images/JerarquiaTradicionalBus.png]]
+
+*** Características                                           
+:PROPERTIES:
+:BEAMER_col: 0.45
+:END:
+- *Bus Local:* Conecta la CPU con la memoria caché a la máxima velocidad del procesador.
+- *Bus del Sistema:* Se encarga de conectar la caché con la memoria principal.
+- *Bus de Expansión:* Conecta los dispositivos de E/S periféricos.
+- *Aislamiento:* Mantiene el tráfico de E/S separado de los procesos de la CPU.
+
+** Jerarquía de Buses de Altas Prestaciones (7, 103)
+
+*** Arquitectura Moderna                                     
+:PROPERTIES:
+:BEAMER_col: 0.55
+:END:
+#+ATTR_LATEX: :width \textwidth
+[[./images/JerarquiaAltasPrestaciones.png]]
+
+*** Características                                           
+:PROPERTIES:
+:BEAMER_col: 0.45
+:END:
+- *Bus de Alta Velocidad:* Conecta de forma más directa los dispositivos exigentes (video, gráficos, redes rápidas).
+- *Bus de Expansión:* Mantiene relegados a los dispositivos y periféricos más lentos.
+- *Ventaja:* La separación del tráfico mejora el rendimiento global del sistema.
+- *Transición:* Esta organización introduce nuevos retos en el arbitraje, la temporización y el ancho del bus.
+  
 ** Elementos de Diseño de un Bus (7, 104)
 - El diseño de un bus de sistema no es arbitrario; representa un balance
   crítico entre *costo físico*, *complejidad del hardware* y
@@ -126,8 +241,6 @@ Un bus de sistema se divide en tres grupos funcionales de líneas:
   - *Físicos*: Tipo de líneas y ancho del bus.
   - *Lógicos y de Control*: Método de arbitraje, tipo de transferencia y temporización.
 - A continuación, se analizará cómo cada uno de estos elementos impacta directamente en el ancho de banda del procesador y el direccionamiento del sistema.
-
-* Tipos de Líneas de Bus
 
 * Tipos de Líneas de Bus
 ** Clasificación por Funcionalidad
@@ -297,7 +410,7 @@ Un bus de sistema se divide en tres grupos funcionales de líneas:
 - **Unidad de mensaje:** El "Paquete", que consiste en un número entero de Flits.
 
 * PCI Express
-** PCI Express (11, 123) ** PCI Express
+** PCI Express
 - El PCI Express (PCIe) nacio como un reemplazo del bus PCI
 - El bus PCI era un bus periférico o mezzanine muy popular
 - El PCIe fue creado con una arquitectura punto a punto, teniendo 3
@@ -346,8 +459,7 @@ además de:
 - *LCRC:* 32-bit link-layer CRC
 #+Attr_LATEX: :scale 0.3
 #+CAPTION: Procesamiento de paquetes en PCIe
-[[./images/PCIePDUFormat.jpg]]
-* Referencias
+[[./images/PCIePDUFormat.jpg]]* Referencias
 ** Bibliografía
 :PROPERTIES:
 :BEAMER_opt: allowframebreaks
